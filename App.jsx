@@ -9,7 +9,7 @@ export default function App() {
   const [matchedCards, setMatchedCards] = useState([]);
   const [isGameOver, setIsGameOver] = useState(false);
 
-  console.log({ matchedCards, isGameOver });
+  console.log({ matchedCards, isGameOver, selectedCards });
 
   useEffect(() => {
     if (
