@@ -97,16 +97,12 @@ export default function App() {
   function turnCard(name, index) {
     // setSelectedCards([{ name, index }]);
 
-    const selectedCardEntry = selectedCards.find(
-      (emoji) => emoji.index === index
-    );
-
-    if (!selectedCardEntry && selectedCards.length < 2) {
+    if (selectedCards.length < 2) {
       setSelectedCards((prevSelectedCards) => [
         ...prevSelectedCards,
         { name, index },
       ]);
-    } else if (!selectedCardEntry && selectedCards.length === 2) {
+    } else if (selectedCards.length === 2) {
       setSelectedCards([{ name, index }]);
     }
   }
