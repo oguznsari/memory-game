@@ -38,7 +38,11 @@ export default function App() {
   function getDataSlice(data) {
     const randomIndices = getRandomIndices(data);
 
-    const dataSlice = randomIndices.map((index) => data[index]);
+    const dataSlice = randomIndices.reduce((array, index) => {
+      array.push(data[index]);
+      return array;
+    }, []);
+
     return dataSlice;
   }
 
