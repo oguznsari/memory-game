@@ -6,8 +6,13 @@ export default function EmojiButton({
 }) {
   const btnContent = selectedCardEntry || matchedCardEntry ? content : "?";
 
+  const btntyle = matchedCardEntry
+    ? "btn--emoji__back--matched"
+    : selectedCardEntry
+    ? "btn--emoji__back--selected"
+    : "btn--emoji__front";
   return (
-    <button className="btn btn--emoji" onClick={handleClick}>
+    <button className={`btn btn--emoji ${btntyle}`} onClick={handleClick}>
       {btnContent}
     </button>
   );
