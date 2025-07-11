@@ -10,8 +10,9 @@ export default function App() {
   const [selectedCards, setSelectedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  console.log({ matchedCards, areAllCardsMatched, selectedCards });
+  console.log({ matchedCards, areAllCardsMatched, selectedCards, isError });
 
   useEffect(() => {
     if (
@@ -35,6 +36,7 @@ export default function App() {
     e.preventDefault();
 
     try {
+      throw new Error("We're throwing an error");
       const response = await fetch(
         "https://emojihub.yurace.pro/api/all/category/animals-and-nature"
       );
@@ -51,6 +53,7 @@ export default function App() {
       setIsGameOn(true);
     } catch (error) {
       console.error(error);
+      setIsError(error);
     }
   }
 
@@ -114,6 +117,10 @@ export default function App() {
     setSelectedCards([]);
     setMatchedCards([]);
     setAreAllCardsMatched(false);
+  }
+
+  function resetError() {
+    setIsError(false);
   }
 
   return (
