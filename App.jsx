@@ -38,7 +38,7 @@ export default function App() {
     <main>
       <h1>Memory</h1>
       {!isGameOn && <Form handleSubmit={startGame} />}
-      {isGameOn && <MemoryCard handleClick={turnCard} />}
+      {isGameOn && <MemoryCard handleClick={turnCard} data={emojisData} />}
     </main>
   );
 }
