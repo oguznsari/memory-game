@@ -22,8 +22,9 @@ export default function App() {
 
       const data = await response.json();
       const dataSlice = getDataSlice(data);
+      const emojisArray = getEmojisArray(dataSlice);
 
-      setEmojisData(dataSlice);
+      setEmojisData(emojisArray);
       setIsGameOn(true);
     } catch (error) {
       console.error(error);
@@ -55,6 +56,21 @@ export default function App() {
     }
 
     return randomIndices;
+  }
+
+  function getEmojisArray(data) {
+    const pairEmojisArray = [...data, ...data];
+
+    // Fisher-Yates shuffle
+    for (let i = pairEmojisArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pairEmojisArray[i], pairEmojisArray[j]] = [
+        pairEmojisArray[j],
+        pairEmojisArray[i],
+      ];
+    }
+
+    return pairEmojisArray;
   }
 
   return (
