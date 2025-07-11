@@ -3,6 +3,7 @@ import Form from "/components/Form";
 import MemoryCard from "/components/MemoryCard";
 import AssistiveTechInfo from "./components/AssistiveTechInfo";
 import GameOver from "./components/GameOver";
+import ErrorCard from "./components/ErrorCard";
 
 export default function App() {
   const [isGameOn, setIsGameOn] = useState(false);
@@ -126,7 +127,7 @@ export default function App() {
   return (
     <main>
       <h1>Memory</h1>
-      {!isGameOn && <Form handleSubmit={startGame} />}
+      {!isGameOn && !isError && <Form handleSubmit={startGame} />}
       {isGameOn && !areAllCardsMatched && (
         <AssistiveTechInfo
           emojisData={emojisData}
@@ -142,6 +143,7 @@ export default function App() {
           matchedCards={matchedCards}
         />
       )}
+      {isError && <ErrorCard handleClick={resetError} />}
     </main>
   );
 }
