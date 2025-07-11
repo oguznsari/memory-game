@@ -21,9 +21,9 @@ export default function App() {
       }
 
       const data = await response.json();
-      const dataSample = data.slice(0, 5);
+      const dataSlice = getDataSlice(data);
 
-      setEmojisData(dataSample);
+      setEmojisData(dataSlice);
       setIsGameOn(true);
     } catch (error) {
       console.error(error);
@@ -32,6 +32,29 @@ export default function App() {
 
   function turnCard() {
     console.log("Memory card clicked");
+  }
+
+  function getDataSlice(data) {
+    const randomIndices = getRandomIndices(data);
+
+    const dataSlice = randomIndices.map((index) => data[index]);
+    return dataSlice;
+  }
+
+  function getRandomIndices(data) {
+    const randomIndices = [];
+
+    for (let i = 0; i < 5; i++) {
+      const randomNum = Math.floor(Math.random() * data.length);
+
+      if (!randomIndices.includes(randomNum)) {
+        randomIndices.push(randomNum);
+      } else {
+        i--;
+      }
+    }
+
+    return randomIndices;
   }
 
   return (
