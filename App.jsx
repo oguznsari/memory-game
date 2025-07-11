@@ -5,9 +5,24 @@ import MemoryCard from "/components/MemoryCard";
 export default function App() {
   const [isGameOn, setIsGameOn] = useState(false);
 
-  function startGame(e) {
+  async function startGame(e) {
     e.preventDefault();
-    setIsGameOn(true);
+
+    try {
+      const response = await fetch(
+        "https://emojihub.yurace.pro/api/all/category/animals-and-nature"
+      );
+
+      if (!response.ok) {
+        throw Error("Could not fetch data from API");
+      }
+
+      const data = await response.json();
+      console.log({ data });
+      setIsGameOn(true);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function turnCard() {
