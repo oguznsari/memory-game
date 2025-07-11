@@ -20,8 +20,6 @@ export default function App() {
   const [areAllCardsMatched, setAreAllCardsMatched] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  console.log({ matchedCards, areAllCardsMatched, selectedCards, isError });
-
   useEffect(() => {
     if (
       selectedCards.length === 2 &&
@@ -127,6 +125,7 @@ export default function App() {
     setSelectedCards([]);
     setMatchedCards([]);
     setAreAllCardsMatched(false);
+    setFormData(initialFormData);
   }
 
   function resetError() {
